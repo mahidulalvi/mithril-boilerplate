@@ -1,0 +1,27 @@
+{
+  "name": "mithril-boilerplate",
+  "version": "1.0.0",
+  "description": "A boilerplate project using mithril.js.",
+  "main": "app.js",
+  "module": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/mahidulalvi/mithril-boilerplate.git"
+  },
+  "keywords": [
+    "mithril",
+    "mithril-boilerplate"
+  ],
+  "author": "Md Mahidul Haque Alvi",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mahidulalvi/mithril-boilerplate/issues"
+  },
+  "homepage": "https://github.com/mahidulalvi/mithril-boilerplate#readme",
+  "dependencies": {
+    "esm": "^3.2.25"
+  }
+}
