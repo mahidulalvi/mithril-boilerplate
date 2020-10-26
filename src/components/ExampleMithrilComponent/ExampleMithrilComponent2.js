@@ -1,4 +1,5 @@
 import m from 'mithril';
+import './styles.css';
 
 const ExampleMithrilComponent2 = initialVnode => {
   return {
@@ -10,6 +11,7 @@ const ExampleMithrilComponent2 = initialVnode => {
         m(
           'button',
           {
+            class: 'counter-button',
             onclick: vnode.attrs.increaseGlobalCount,
           },
           ' + '

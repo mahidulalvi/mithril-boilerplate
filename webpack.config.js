@@ -37,11 +37,19 @@ const TerserPlugin = require('terser-webpack-plugin');
 
 const workboxPlugin = require('workbox-webpack-plugin');
 
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+
 module.exports = {
   mode: 'development',
   entry: './src/app.js',
 
+  output: {
+    filename: 'bundle.js',
+    path: path.resolve(__dirname, 'dist'),
+  },
+
   plugins: [
+    new HtmlWebpackPlugin(),
     new webpack.ProgressPlugin(),
     new MiniCssExtractPlugin({ filename: 'stylebundle.[chunkhash].css' }),
     new workboxPlugin.GenerateSW({
@@ -64,9 +72,6 @@ module.exports = {
         use: [
           {
             loader: MiniCssExtractPlugin.loader,
-          },
-          {
-            loader: 'style-loader',
           },
           {
             loader: 'css-loader',
