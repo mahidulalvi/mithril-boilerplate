@@ -1,4 +1,5 @@
 import m from 'mithril';
+import './styles.css';
 
 const ExampleMithrilComponent = () => {
   let count = 0;
@@ -13,6 +14,7 @@ const ExampleMithrilComponent = () => {
         m(
           'button',
           {
+            class: 'counter-button',
             onclick: increaseCount,
           },
           ' + '
