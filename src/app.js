@@ -12,19 +12,19 @@ const increaseGlobalCount = () => {
 const rerender = () => {
   m.render(
     document.body,
-    m(ExampleMithrilComponent2, {
-      globalCount: globalCount,
-      increaseGlobalCount: increaseGlobalCount,
-    }),
+    <ExampleMithrilComponent2
+      globalCount={globalCount}
+      increaseGlobalCount={increaseGlobalCount}
+    />,
     () => rerender()
   );
 };
 
 m.render(
   document.body,
-  m(ExampleMithrilComponent2, {
-    globalCount: globalCount,
-    increaseGlobalCount: increaseGlobalCount,
-  }),
+  <ExampleMithrilComponent2
+    globalCount={globalCount}
+    increaseGlobalCount={increaseGlobalCount}
+  />,
   () => rerender()
 );

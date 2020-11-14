@@ -1,13 +1,20 @@
 {
-    "plugins": [
-        "syntax-dynamic-import"
-    ],
-    "presets": [
-        [
-            "@babel/preset-env",
-            {
-                "modules": false
-            }
-        ]
+  "plugins": [
+    "syntax-dynamic-import",
+    [
+      "@babel/plugin-transform-react-jsx",
+      {
+        "pragma": "m",
+        "pragmaFrag": "'['"
+      }
     ]
+  ],
+  "presets": [
+    [
+      "@babel/preset-env",
+      {
+        "modules": false
+      }
+    ]
+  ]
 }
