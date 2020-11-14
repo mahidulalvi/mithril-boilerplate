@@ -7,20 +7,14 @@ const ExampleMithrilComponent = () => {
   const increaseCount = () => (count += 1);
 
   return {
-    view: () => {
-      return m(
-        'div',
-        m('p', 'Count: ' + count),
-        m(
-          'button',
-          {
-            class: 'counter-button',
-            onclick: increaseCount,
-          },
-          ' + '
-        )
-      );
-    },
+    view: () => (
+      <div>
+        <p>Count: {count}</p>
+        <button className="counter-button" onclick={increaseCount}>
+          +
+        </button>
+      </div>
+    ),
   };
 };
 
