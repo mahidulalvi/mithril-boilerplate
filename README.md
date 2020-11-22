@@ -7,3 +7,10 @@ Although there are lots of other templates using different view libraries, Mithr
 Inspiration from [`react-boilerplate`](https://github.com/react-boilerplate/react-boilerplate).
 
 Stay tuned for latest updates.
+
+&nbsp;
+
+# setup
+
+Clone the repo and run `npm install`.
+To start the app in development mode, run `npm run start`.
