@@ -10,7 +10,8 @@
     "lint:js": "npm run lint:eslint -- . ",
     "lint:eslint": "eslint --ignore-path .gitignore",
     "prettify": "prettier --write",
-    "build": "webpack"
+    "build": "webpack",
+    "start": "webpack-cli serve"
   },
   "repository": {
     "type": "git",
@@ -49,8 +50,9 @@
     "style-loader": "^1.2.1",
     "terser-webpack-plugin": "^4.1.0",
     "webpack": "^4.44.1",
-    "webpack-cli": "^4.0.0-beta.8",
+    "webpack-cli": "^4.2.0",
     "webpack-dev-middleware": "3.7.2",
+    "webpack-dev-server": "^3.11.0",
     "webpack-hot-middleware": "2.25.0",
     "workbox-webpack-plugin": "^5.1.3"
   }

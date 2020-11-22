@@ -15,17 +15,6 @@ const webpack = require('webpack');
  */
 
 /*
- * We've enabled MiniCssExtractPlugin for you. This allows your app to
- * use css modules that will be moved into a separate CSS file instead of inside
- * one of your module entries!
- *
- * https://github.com/webpack-contrib/mini-css-extract-plugin
- *
- */
-
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-
-/*
  * We've enabled TerserPlugin for you! This minifies your app
  * in order to load faster and run less javascript.
  *
@@ -48,10 +37,16 @@ module.exports = {
     path: path.resolve(__dirname, 'dist'),
   },
 
+  devServer: {
+    contentBase: './dist',
+    port: 3000,
+    hot: true,
+    open: true,
+  },
+
   plugins: [
     new HtmlWebpackPlugin(),
     new webpack.ProgressPlugin(),
-    new MiniCssExtractPlugin({ filename: 'stylebundle.[chunkhash].css' }),
     new workboxPlugin.GenerateSW({
       swDest: 'sw.js',
       clientsClaim: true,
@@ -70,9 +65,7 @@ module.exports = {
         test: /.css$/,
 
         use: [
-          {
-            loader: MiniCssExtractPlugin.loader,
-          },
+          { loader: 'style-loader' },
           {
             loader: 'css-loader',
 

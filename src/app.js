@@ -28,3 +28,14 @@ m.render(
   />,
   () => rerender()
 );
+
+if (module.hot) {
+  module.hot.accept(
+    [
+      './components/ExampleMithrilComponent/ExampleMithrilComponent2.js',
+      './components/ExampleMithrilComponent/styles.css',
+    ],
+    // callback to execute when components are updated - rerendering mithril
+    () => rerender()
+  );
+}
