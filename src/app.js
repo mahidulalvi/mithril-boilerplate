@@ -1,10 +1,12 @@
 import m from 'mithril';
 // import ExampleMithrilComponent from './components/ExampleMithrilComponent/ExampleMithrilComponent.js';
 import ExampleMithrilComponent2 from './components/ExampleMithrilComponent/ExampleMithrilComponent2.js';
+import { store } from './redux/config.js';
+import { incrementCounter } from './components/ExampleMithrilComponent/actions';
 
-let globalCount = 0;
+let globalCount = store.getState().value;
 const increaseGlobalCount = () => {
-  globalCount += 1;
+  store.dispatch(incrementCounter());
 };
 
 // m.mount(document.body, ExampleMithrilComponent);
@@ -28,6 +30,17 @@ m.render(
   />,
   () => rerender()
 );
+
+// listening to the store whenever an action is dispatched.
+// component is rerendered if stored value is changed.
+store.subscribe(() => {
+  const currentCount = store.getState().value;
+  if (globalCount !== currentCount) {
+    globalCount = currentCount;
+
+    rerender();
+  }
+});
 
 if (module.hot) {
   module.hot.accept(
