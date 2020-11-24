@@ -1,0 +1,3 @@
+const COUNTER_INCREMENTED = 'ExampleMithrilComponent/COUNTER_INCREMENTED';
+
+export { COUNTER_INCREMENTED };
