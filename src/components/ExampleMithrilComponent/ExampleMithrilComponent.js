@@ -4,7 +4,7 @@ import './styles.css';
 const ExampleMithrilComponent = () => {
   let count = 0;
 
-  const increaseCount = () => (count += 1);
+  const increaseCount = () => (count += 4);
 
   return {
     view: () => (
