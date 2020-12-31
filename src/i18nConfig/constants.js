@@ -1,0 +1,5 @@
+const CHANGE_LOCALE = 'i18nConfig/CHANGE_LOCALE';
+const LOCALE_TYPE_EN_CA = 'en-CA';
+const LOCALE_TYPE_FR_CA = 'fr-CA';
+
+export { CHANGE_LOCALE, LOCALE_TYPE_EN_CA, LOCALE_TYPE_FR_CA };

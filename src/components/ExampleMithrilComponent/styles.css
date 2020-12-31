@@ -2,3 +2,7 @@
   background-color: #87ceeb;
   color: #ffffff;
 }
+
+.change-locale-select-tag {
+  margin: 20px 0 0 10px;
+}

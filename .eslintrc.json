@@ -16,6 +16,7 @@
   },
   "plugins": ["jsx-a11y", "prettier"],
   "rules": {
-    "prettier/prettier": "error"
+    "prettier/prettier": "error",
+    "jsx-a11y/no-onchange": "off"
   }
 }
