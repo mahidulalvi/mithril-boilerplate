@@ -1,0 +1,6 @@
+{
+  "app.components.ExampleMithrilComponent.counterLabel": "Compter:",
+  "app.components.ExampleMithrilComponent.changeLocaleSelectTagLabel": "Changer de langue:",
+  "app.components.ExampleMithrilComponent.englishLanguageName": "Anglaise",
+  "app.components.ExampleMithrilComponent.frenchLanguageName": "français"
+}

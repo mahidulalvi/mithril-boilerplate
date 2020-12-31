@@ -28,6 +28,7 @@
   },
   "homepage": "https://github.com/mahidulalvi/mithril-boilerplate#readme",
   "dependencies": {
+    "@formatjs/intl": "^1.4.13",
     "lodash": "4.17.20",
     "mithril": "^2.0.4",
     "redux": "^4.0.5"
