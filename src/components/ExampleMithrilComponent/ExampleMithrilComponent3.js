@@ -1,5 +1,4 @@
 import m from 'mithril';
-import { store } from '../../reduxConfig/config.js';
 import { connect } from '../../reduxConfig/connect.js';
 import { doubleCounter } from './actions';
 import './styles.css';
@@ -8,11 +7,9 @@ import { makeSelectCount } from './selectors.js';
 import { makeSelectIntl } from '../../i18nConfig/selectors.js';
 
 const ExampleMithrilComponent3 = () => {
-  const increaseCount = () => store.dispatch(doubleCounter());
-
   return {
     view: vnode => {
-      const { intl, count } = vnode.attrs;
+      const { intl, count, increaseCount } = vnode.attrs;
 
       return (
         <div>
@@ -33,4 +30,12 @@ const mapStateToVnodeAttrs = {
   intl: makeSelectIntl(),
 };
 
-export default connect(mapStateToVnodeAttrs, ExampleMithrilComponent3);
+const mapDispatchToVnodeAttrs = dispatch => ({
+  increaseCount: () => dispatch(doubleCounter()),
+});
+
+export default connect(
+  ExampleMithrilComponent3,
+  mapStateToVnodeAttrs,
+  mapDispatchToVnodeAttrs
+);

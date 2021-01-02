@@ -12,13 +12,20 @@ import _ from 'lodash';
 const determineCurrentAttrValues = mapStateToVnodeAttrs => {
   const state = store.getState();
 
-  return _.mapValues(mapStateToVnodeAttrs, value => {
-    return value(state);
-  });
+  return _.mapValues(mapStateToVnodeAttrs, value => value(state));
 };
 
-export const connect = (mapStateToVnodeAttrs = {}, initialVnode) => {
+export const connect = (
+  initialVnode,
+  mapStateToVnodeAttrs = {},
+  mapDispatchToVnodeAttrs
+) => {
   let currentAttrValues = determineCurrentAttrValues(mapStateToVnodeAttrs);
+  let attrsWithDispatch;
+
+  if (mapDispatchToVnodeAttrs) {
+    attrsWithDispatch = mapDispatchToVnodeAttrs(store.dispatch);
+  }
 
   store.subscribe(() => {
     currentAttrValues = determineCurrentAttrValues(mapStateToVnodeAttrs);
@@ -28,7 +35,7 @@ export const connect = (mapStateToVnodeAttrs = {}, initialVnode) => {
   return {
     onmatch: () => initialVnode,
     render: vnode => {
-      vnode.attrs = currentAttrValues;
+      vnode.attrs = { ...currentAttrValues, ...attrsWithDispatch };
       return vnode;
     },
   };
