@@ -4,7 +4,7 @@ import ExampleMithrilComponent2 from './components/ExampleMithrilComponent/Examp
 import ExampleMithrilComponent3 from './components/ExampleMithrilComponent/ExampleMithrilComponent3.js';
 
 const mountApp = () =>
-  m.route(document.body, '/example3', {
+  m.route(document.body, '/example1', {
     '/example1': ExampleMithrilComponent,
     '/example2': ExampleMithrilComponent2,
     '/example3': ExampleMithrilComponent3,

@@ -1,7 +1,8 @@
 import m from 'mithril';
 import './styles.css';
 import messages from './messages';
-import injectIntl from '../../i18nConfig/i18n.js';
+import { makeSelectIntl } from '../../i18nConfig/selectors.js';
+import { connect } from '../../reduxConfig/connect.js';
 
 const ExampleMithrilComponent = () => {
   let count = 0;
@@ -10,7 +11,7 @@ const ExampleMithrilComponent = () => {
 
   return {
     view: vnode => {
-      const intl = vnode.attrs.intl;
+      const { intl } = vnode.attrs;
 
       return (
         <div>
@@ -26,4 +27,15 @@ const ExampleMithrilComponent = () => {
   };
 };
 
-export default injectIntl(ExampleMithrilComponent);
+/*
+ * since makeSelectIntl is a functional selector, we invoke the result
+ * of makeSelectIntl() by passing the state param. Alternatively, the
+ * createStructuredSelector method could be used
+ * (example in ExampleMithrilComponent2)
+ * or the selector could be made non-functional.
+ */
+const mapStateToVnodeAttrs = state => ({
+  intl: makeSelectIntl()(state),
+});
+
+export default connect(ExampleMithrilComponent, mapStateToVnodeAttrs);

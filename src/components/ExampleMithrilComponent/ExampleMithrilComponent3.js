@@ -5,6 +5,7 @@ import './styles.css';
 import messages from './messages.js';
 import { makeSelectCount } from './selectors.js';
 import { makeSelectIntl } from '../../i18nConfig/selectors.js';
+import { createStructuredSelector } from 'reselect';
 
 const ExampleMithrilComponent3 = () => {
   return {
@@ -25,10 +26,10 @@ const ExampleMithrilComponent3 = () => {
   };
 };
 
-const mapStateToVnodeAttrs = {
+const mapStateToVnodeAttrs = createStructuredSelector({
   count: makeSelectCount(),
   intl: makeSelectIntl(),
-};
+});
 
 const mapDispatchToVnodeAttrs = dispatch => ({
   increaseCount: () => dispatch(doubleCounter()),

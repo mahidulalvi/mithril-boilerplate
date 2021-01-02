@@ -1,43 +1,35 @@
 import m from 'mithril';
-import { store } from '../../reduxConfig/config.js';
 import { doubleCounter } from './actions';
 import { changeLocale } from '../../i18nConfig/actions.js';
 import './styles.css';
-import injectIntl from '../../i18nConfig/i18n.js';
 import messages from './messages.js';
 import {
   LOCALE_TYPE_EN_CA,
   LOCALE_TYPE_FR_CA,
 } from '../../i18nConfig/constants.js';
+import {
+  makeSelectIntl,
+  makeSelectLocale,
+} from '../../i18nConfig/selectors.js';
+import { connect } from '../../reduxConfig/connect.js';
+import { makeSelectCount } from './selectors.js';
+import { createStructuredSelector } from 'reselect';
 
 const ExampleMithrilComponent2 = () => {
-  let currentCount = store.getState().exampleComponent.value;
-  let currentLocale = store.getState().i18n.locale;
-
-  const increaseCount = () => store.dispatch(doubleCounter());
-  const changeSelectTagOption = value => store.dispatch(changeLocale(value));
-
-  // listening to the store whenever an action is dispatched.
-  // component is rerendered if stored value is changed.
-  store.subscribe(() => {
-    const updatedCount = store.getState().exampleComponent.value;
-    const updatedLocale = store.getState().i18n.locale;
-    if (currentCount !== updatedCount) {
-      currentCount = updatedCount;
-    }
-    if (currentLocale !== updatedLocale) {
-      currentLocale = updatedLocale;
-    }
-  });
-
   return {
     view: vnode => {
-      const intl = vnode.attrs.intl;
+      const {
+        intl,
+        count,
+        increaseCount,
+        locale,
+        changeSelectTagOption,
+      } = vnode.attrs;
 
       return (
         <div>
           <p>
-            {intl.formatMessage(messages.counterLabel)} {currentCount}
+            {intl.formatMessage(messages.counterLabel)} {count}
           </p>
           <button className="counter-button" onclick={increaseCount}>
             +
@@ -48,7 +40,7 @@ const ExampleMithrilComponent2 = () => {
             </label>
             <select
               className="change-locale-select-tag"
-              value={currentLocale}
+              value={locale}
               onchange={event => changeSelectTagOption(event.target.value)}
             >
               <option value={LOCALE_TYPE_EN_CA}>
@@ -65,4 +57,19 @@ const ExampleMithrilComponent2 = () => {
   };
 };
 
-export default injectIntl(ExampleMithrilComponent2);
+const mapStateToVnodeAttrs = createStructuredSelector({
+  count: makeSelectCount(),
+  intl: makeSelectIntl(),
+  locale: makeSelectLocale(),
+});
+
+const mapDispatchToVnodeAttrs = dispatch => ({
+  increaseCount: () => dispatch(doubleCounter()),
+  changeSelectTagOption: value => dispatch(changeLocale(value)),
+});
+
+export default connect(
+  ExampleMithrilComponent2,
+  mapStateToVnodeAttrs,
+  mapDispatchToVnodeAttrs
+);

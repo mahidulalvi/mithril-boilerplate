@@ -7,29 +7,26 @@
  */
 
 import { store } from './config.js';
-import _ from 'lodash';
-
-const determineCurrentAttrValues = mapStateToVnodeAttrs => {
-  const state = store.getState();
-
-  return _.mapValues(mapStateToVnodeAttrs, value => value(state));
-};
 
 export const connect = (
   initialVnode,
-  mapStateToVnodeAttrs = {},
+  mapStateToVnodeAttrs,
   mapDispatchToVnodeAttrs
 ) => {
-  let currentAttrValues = determineCurrentAttrValues(mapStateToVnodeAttrs);
-  let attrsWithDispatch;
+  let currentAttrValues = {};
+  let attrsWithDispatch = {};
+
+  if (mapStateToVnodeAttrs) {
+    currentAttrValues = mapStateToVnodeAttrs(store.getState());
+
+    store.subscribe(() => {
+      currentAttrValues = mapStateToVnodeAttrs(store.getState());
+    });
+  }
 
   if (mapDispatchToVnodeAttrs) {
     attrsWithDispatch = mapDispatchToVnodeAttrs(store.dispatch);
   }
-
-  store.subscribe(() => {
-    currentAttrValues = determineCurrentAttrValues(mapStateToVnodeAttrs);
-  });
 
   // returns a route resolver with updated attr values on render
   return {
