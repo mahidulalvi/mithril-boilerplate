@@ -34,14 +34,8 @@ module.exports = {
 
   output: {
     filename: 'bundle.js',
-    path: path.resolve(__dirname, 'dist'),
-  },
-
-  devServer: {
-    contentBase: './dist',
-    port: 3000,
-    hot: true,
-    open: true,
+    path: path.join(process.cwd(), 'dist'),
+    publicPath: '/',
   },
 
   plugins: [
@@ -58,7 +52,7 @@ module.exports = {
     rules: [
       {
         test: /.(js|jsx)$/,
-        include: [path.resolve(__dirname, 'src')],
+        include: [path.join(process.cwd(), 'src')],
         loader: 'babel-loader',
       },
       {

@@ -10,8 +10,7 @@
     "lint:js": "npm run lint:eslint -- . ",
     "lint:eslint": "eslint --ignore-path .gitignore",
     "prettify": "prettier --write",
-    "build": "webpack",
-    "start": "webpack-cli serve"
+    "start": "node src/serverConfig/server.js"
   },
   "repository": {
     "type": "git",
@@ -29,6 +28,7 @@
   "homepage": "https://github.com/mahidulalvi/mithril-boilerplate#readme",
   "dependencies": {
     "@formatjs/intl": "^1.4.13",
+    "express": "^4.17.1",
     "lodash": "4.17.20",
     "mithril": "^2.0.4",
     "redux": "^4.0.5",
@@ -54,8 +54,7 @@
     "terser-webpack-plugin": "^4.1.0",
     "webpack": "^4.44.1",
     "webpack-cli": "^4.2.0",
-    "webpack-dev-middleware": "3.7.2",
-    "webpack-dev-server": "^3.11.0",
+    "webpack-dev-middleware": "^3.7.2",
     "webpack-hot-middleware": "2.25.0",
     "workbox-webpack-plugin": "^5.1.3"
   }
