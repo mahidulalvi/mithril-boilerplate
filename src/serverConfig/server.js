@@ -1,6 +1,7 @@
 const express = require('express');
 const webpack = require('webpack');
 const webpackDevMiddleware = require('webpack-dev-middleware');
+const webpackHotMiddleware = require('webpack-hot-middleware');
 
 const app = express();
 const webpackConfig = require('./webpack.config.js');
@@ -17,6 +18,8 @@ app.use(
     publicPath: webpackConfig.output.publicPath,
   })
 );
+
+app.use(webpackHotMiddleware(compiler));
 
 app.listen(3000, () =>
   console.log('/nmithril-boilerplate listening on port 3000')
