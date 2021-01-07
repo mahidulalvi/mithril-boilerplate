@@ -10,7 +10,7 @@
     "lint:js": "npm run lint:eslint -- . ",
     "lint:eslint": "eslint --ignore-path .gitignore",
     "prettify": "prettier --write",
-    "start": "node src/serverConfig/server.js"
+    "start": "node server/scripts/devServerPreBuild.js && node server/server.js"
   },
   "repository": {
     "type": "git",
@@ -47,6 +47,7 @@
     "eslint-plugin-jsx-a11y": "6.3.1",
     "eslint-plugin-mithril": "^0.2.0",
     "eslint-plugin-prettier": "3.1.4",
+    "glob": "^7.1.6",
     "html-webpack-plugin": "4.5.0",
     "mini-css-extract-plugin": "^0.11.0",
     "prettier": "2.0.5",

@@ -30,7 +30,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
   mode: 'development',
-  entry: ['./src/app.js', 'webpack-hot-middleware/client?reload=true'],
+  entry: ['./src/appDev.js', 'webpack-hot-middleware/client?reload=true'],
 
   output: {
     filename: 'bundle.js',
