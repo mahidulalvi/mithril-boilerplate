@@ -28,6 +28,8 @@ const workboxPlugin = require('workbox-webpack-plugin');
 
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
+const WebpackShellPlugin = require('webpack-shell-plugin');
+
 module.exports = {
   mode: 'development',
   entry: ['./src/appDev.js', 'webpack-hot-middleware/client?reload=true'],
@@ -46,6 +48,9 @@ module.exports = {
       swDest: 'sw.js',
       clientsClaim: true,
       skipWaiting: false,
+    }),
+    new WebpackShellPlugin({
+      onBuildExit: ['node server/scripts/devServerPreBuild.js'],
     }),
   ],
 
