@@ -1,13 +1,12 @@
 /**
- * source for entry file for webpack development env. build
+ * root file for the application
  *
- * development build webpack entry file is src/appDev.js which is a HMR enabled
- * version of this file. The appDev.js file is also ignored in git. This file
- * is created/overwritten every time npm run start command is executed.
+ * development build webpack entry file is src/appDev.js which is a HMR enabled,
+ * temporary & only for development server - version of the app.js file.
  *
- * see in scripts section of package.json for more details.
+ * read comments in 'server/scripts/devServerPreBuild.js' file for more details.
  *
- * we will use this app.js file in production env. where
+ * we will use this app.js file in production env. build where
  * HMR - Hot Module Replacement is not needed.
  */
 

@@ -10,7 +10,10 @@
     "lint:js": "npm run lint:eslint -- . ",
     "lint:eslint": "eslint --ignore-path .gitignore",
     "prettify": "prettier --write",
-    "start": "node server/scripts/devServerPreBuild.js && node server/server.js"
+    "start": "npm run reinit:dev:root && npm run server",
+    "reinit:dev:root": "rm -rf src/appDev.js && npm run create:dev:root",
+    "create:dev:root": "node server/scripts/devServerPreBuild.js",
+    "server": "node server/server.js"
   },
   "repository": {
     "type": "git",
@@ -28,6 +31,7 @@
   "homepage": "https://github.com/mahidulalvi/mithril-boilerplate#readme",
   "dependencies": {
     "@formatjs/intl": "^1.4.13",
+    "dayjs": "^1.10.3",
     "express": "^4.17.1",
     "lodash": "4.17.20",
     "mithril": "^2.0.4",
@@ -57,6 +61,7 @@
     "webpack-cli": "^4.3.1",
     "webpack-dev-middleware": "^3.7.2",
     "webpack-hot-middleware": "2.25.0",
+    "webpack-shell-plugin": "^0.5.0",
     "workbox-webpack-plugin": "^5.1.3"
   }
 }
