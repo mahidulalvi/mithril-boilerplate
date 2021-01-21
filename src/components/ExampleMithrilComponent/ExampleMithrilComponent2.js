@@ -63,8 +63,27 @@ const mapStateToVnodeAttrs = createStructuredSelector({
   locale: makeSelectLocale(),
 });
 
+/**
+ * usually our store subscription callback (in src/reduxConfig/config.js) picks
+ * up dispatched actions before Mithril can auto redraw via firing
+ * event handler functions (e.g. button clicks. increaseCount
+ * is an event handler function). the subscription callback then manually
+ * calls the redraw function.
+ *
+ * for this reason & also because the redraw calls are throttled,
+ * multiple DOM updates do not occur even after 'Redux store
+ * subscription callback' initiated manual redraw calls and firing of
+ * event handlers initiated auto redraw calls in quick succession.
+ *
+ * dispatch function 'increaseCount' for counter onclick
+ * event handler can be updated to turn off Mithril's default redraw behaviour
+ * explicityly by setting event.redraw = false.
+ */
 const mapDispatchToVnodeAttrs = dispatch => ({
-  increaseCount: () => dispatch(doubleCounter()),
+  increaseCount: () => {
+    // event.redraw = false;
+    dispatch(doubleCounter());
+  },
   changeSelectTagOption: value => dispatch(changeLocale(value)),
 });
 

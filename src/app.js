@@ -11,15 +11,16 @@
  */
 
 import m from 'mithril';
+import RouteResolver from './RouteResolver.js';
 import ExampleMithrilComponent from './components/ExampleMithrilComponent/ExampleMithrilComponent.js';
 import ExampleMithrilComponent2 from './components/ExampleMithrilComponent/ExampleMithrilComponent2.js';
 import ExampleMithrilComponent3 from './components/ExampleMithrilComponent/ExampleMithrilComponent3.js';
 
 const mountApp = () =>
   m.route(document.body, '/example1', {
-    '/example1': ExampleMithrilComponent,
-    '/example2': ExampleMithrilComponent2,
-    '/example3': ExampleMithrilComponent3,
+    '/example1': RouteResolver(ExampleMithrilComponent),
+    '/example2': RouteResolver(ExampleMithrilComponent2),
+    '/example3': RouteResolver(ExampleMithrilComponent3),
   });
 
 mountApp();

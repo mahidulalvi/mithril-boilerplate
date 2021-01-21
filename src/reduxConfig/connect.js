@@ -1,9 +1,11 @@
 /**
- * connect is a function that returns a route resolver for the
- *  child component.
+ * connect is a function which returns an object containing the
+ * component & a function to get the component's latest vnode attrs.
  *
- * A route resolver is necessary for supplying the child component with the
- * updated props from redux store on component render when store is updated.
+ * this function, when called upon rerendering, supplies the component with
+ * the latest vnode attrs from Redux store.
+ *
+ * see src/RouteResolver.js for implementation.
  */
 
 import { store } from './config.js';
@@ -12,28 +14,23 @@ export const connect = (
   initialVnode,
   mapStateToVnodeAttrs,
   mapDispatchToVnodeAttrs
-) => {
-  let currentAttrValues = {};
-  let attrsWithDispatch = {};
+) => ({
+  initialVnode,
+  getVnodeAttrs: () => {
+    let attrs = {};
+    let attrsWithDispatch = {};
 
-  if (mapStateToVnodeAttrs) {
-    currentAttrValues = mapStateToVnodeAttrs(store.getState());
+    if (mapStateToVnodeAttrs) {
+      attrs = mapStateToVnodeAttrs(store.getState());
+    }
 
-    store.subscribe(() => {
-      currentAttrValues = mapStateToVnodeAttrs(store.getState());
-    });
-  }
+    if (mapDispatchToVnodeAttrs) {
+      attrsWithDispatch = mapDispatchToVnodeAttrs(store.dispatch);
+    }
 
-  if (mapDispatchToVnodeAttrs) {
-    attrsWithDispatch = mapDispatchToVnodeAttrs(store.dispatch);
-  }
-
-  // returns a route resolver with updated attr values on render
-  return {
-    onmatch: () => initialVnode,
-    render: vnode => {
-      vnode.attrs = { ...currentAttrValues, ...attrsWithDispatch };
-      return vnode;
-    },
-  };
-};
+    return {
+      ...attrs,
+      ...attrsWithDispatch,
+    };
+  },
+});
