@@ -11,6 +11,7 @@
  */
 
 import m from 'mithril';
+import './globalStyles.css';
 import RouteResolver from './RouteResolver.js';
 import ExampleMithrilComponent from './components/ExampleMithrilComponent/ExampleMithrilComponent.js';
 import ExampleMithrilComponent2 from './components/ExampleMithrilComponent/ExampleMithrilComponent2.js';
