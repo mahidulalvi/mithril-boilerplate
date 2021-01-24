@@ -1,0 +1,20 @@
+nav {
+  background-color: #367898;
+  color: #ffffff;
+  padding: 5px 10px 5px;
+}
+
+.componentWrapper {
+  margin: 8px;
+}
+
+.change-locale-select-tag {
+  margin: 20px 0 0 10px;
+}
+
+.nav-inner-wrapper {
+  display: flex;
+  flex-flow: row wrap;
+  align-items: center;
+  justify-content: space-between;
+}

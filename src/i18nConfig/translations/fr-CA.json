@@ -1,6 +1,7 @@
 {
   "app.components.ExampleMithrilComponent.counterLabel": "Compter:",
-  "app.components.ExampleMithrilComponent.changeLocaleSelectTagLabel": "Changer de langue:",
-  "app.components.ExampleMithrilComponent.englishLanguageName": "Anglaise",
-  "app.components.ExampleMithrilComponent.frenchLanguageName": "français"
+  "app.components.Shared.changeLocaleSelectTagLabel": "Langue:",
+  "app.components.Shared.englishLanguageName": "Anglaise",
+  "app.components.Shared.frenchLanguageName": "français",
+  "app.components.Shared.applicationTitle": "mithril-boilerplate"
 }

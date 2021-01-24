@@ -8,25 +8,49 @@
  * the render method gets the latest props from Redux store
  * & supplies it to the component's vnode attrs on rerender
  * if the component is connected to Redux.
+ *
+ * by default, it wraps the route component with a layout component,
+ * Layout from src/containers/Shared/Layout.js. It can also use a given
+ * component as a layout instead of the default one if supplied in the param;
  */
 
-const RouteResolver = routeParameter => {
-  const isConnectedComponent = routeParameter && routeParameter.initialVnode;
+import m from 'mithril';
+import Layout from './containers/Shared/Layout.js';
 
-  let routeComponent = routeParameter;
-  let getRouteComponentAttrs = () => {};
+const RouteResolver = (routeComponent, layout) => {
+  const isConnectedComponent = routeComponent && routeComponent.initialVnode;
+
+  let Component = routeComponent;
+  let getComponentAttrs = () => {};
 
   if (isConnectedComponent) {
-    routeComponent = routeParameter.initialVnode;
-    getRouteComponentAttrs = routeParameter.getVnodeAttrs;
+    Component = routeComponent.initialVnode;
+    getComponentAttrs = routeComponent.getVnodeAttrs;
+  }
+
+  let LayoutComponent;
+  let getLayoutAttrs;
+
+  if (!layout) {
+    LayoutComponent = Layout.initialVnode;
+    getLayoutAttrs = Layout.getVnodeAttrs;
+  } else {
+    const isConnectedLayout = layout && layout.initialVnode;
+    LayoutComponent = isConnectedLayout ? layout.initialVnode : layout;
+    getLayoutAttrs = isConnectedLayout ? layout.getVnodeAttrs : () => {};
   }
 
   return {
-    onmatch: () => routeComponent,
+    onmatch: () => Component,
     render: vnode => {
-      vnode.attrs = getRouteComponentAttrs();
+      vnode.attrs = getComponentAttrs();
+      const layoutAttrs = getLayoutAttrs();
 
-      return vnode;
+      return (
+        <LayoutComponent {...layoutAttrs}>
+          <Component {...vnode.attrs} />
+        </LayoutComponent>
+      );
     },
   };
 };
